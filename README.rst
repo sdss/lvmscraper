@@ -27,8 +27,13 @@ or from source
     cd lvmscraper
     pip install .
 
+Quickstart
+----------
 
-Next, head to the `Getting started <https://github.com/sdss/lvmscraper/wiki>`__ section for more information about using clu+.
+.. code-block:: console
+
+    poetry run lvmscraper -vvv  start --debug
+
 
 
 .. |Build Status| image:: https://img.shields.io/github/workflow/status/sdss/lvmscraper/Test

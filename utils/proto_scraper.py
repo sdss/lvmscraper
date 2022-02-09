@@ -39,6 +39,15 @@ def flatten_dict(d: MutableMapping, parent_key: str = '', sep: str = '.'):
     return dict(_flatten_dict_gen(d, parent_key, sep))
 
 
+def createFits8key(sys: str, key: str):
+    fitsSkey = createSysFitsKey(sys)
+    if fitsSkey:
+        return fitsSkey + base64.b64encode(hashlib.md5(f"{fitsSkey}.{key}".encode('utf8')).digest())[:5].decode()
+    else:
+        base64.b64encode(hashlib.md5(f"{fitsSkey}.{key}".encode('utf8')).digest())[:8].decode()
+
+
+
 def createSysFitsKey(name: str):
     sys_to_fits_keymap = {
         'lvm.sci.pwi': 'TIS', 
@@ -54,7 +63,11 @@ def createSysFitsKey(name: str):
         'lvm.skyw.km': 'TWK', 
         'lvm.spec.fibsel': 'TSF',
     }
-    
+    if (sk:=sys_to_fits_keymap.get(name)):
+        return sk
+    else:
+        return "XXX"
+  
     return sys_to_fits_keymap.get(name)
 
 sys_param_to_fits_keymap = {
@@ -88,7 +101,6 @@ class StringGenerator(object):
                         key=createSysFitsKey(sk) + sp2f[0]
                         fkeys.append([key, pv, comment])
                 else:
-                    
                     comment = f"{sk[p+1 if (p:=sk.find('.')) else 0:]}.{pk}"
                     fkeys.append([createFits8key(sk, pk), pv, comment])
                 
@@ -116,13 +128,6 @@ class StringGenerator(object):
         </html>"""
 
 
-def createFits8key(sys: str, key: str):
-    fitsSkey = createSysFitsKey(sys)
-    if fitsSkey:
-        return fitsSkey + base64.b64encode(hashlib.md5(f"{fitsSkey}.{key}".encode('utf8')).digest())[:5].decode()
-    else:
-        base64.b64encode(hashlib.md5(f"{fitsSkey}.{key}".encode('utf8')).digest())[:8].decode()
-
 
 class AMQPClientScrap(AMQPClient):
     async def handle_reply(self, message: apika.IncomingMessage) -> AMQPReply:
@@ -132,7 +137,7 @@ class AMQPClientScrap(AMQPClient):
         global fitscard
         reply = AMQPReply(message, log=self.log)
 #        print(f"{dt.now()} {reply.sender} {reply.body}")
-        body = { key: value for (key,value) in flatten_dict(reply.body).items() if key not in ["text", "help", "error", "error.exception_message", "error.exception_module", "error.exception_type"]}
+        body = { key: value for (key,value) in flatten_dict(reply.body).items() if key not in ["text", "help", "schema", "error", "error.exception_message", "error.exception_module", "error.exception_type"]}
         if not len(body): return
         received[reply.sender] = {**old, **body} if (old:=received.get(reply.sender)) else body
         

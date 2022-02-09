@@ -28,9 +28,8 @@ include = ["python/lvmscraper/etc/*"]
 #generate-setup-file = false
 
 [tool.poetry.scripts]
-singleframe = "lvmscraper.__main__:main"
-plotloop = "utils.plotloop:main"
-proto = "proto.__main__:proto"
+lvmscraper = "lvmscraper.__main__:scraper"
+
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4"

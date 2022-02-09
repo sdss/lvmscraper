@@ -38,11 +38,15 @@ class AMQPClientScraper(AMQPClient):
         """Handles a reply received from the exchange.
         """
         reply = AMQPReply(message, log=self.log)
-#        print(f"{dt.now()} {reply.sender} {reply.body}")
+        
+        if reply.sender == "lvm.scraper":
+            return
+        
         body = { key: value for (key,value) in flatten_dict(reply.body).items() if key not in self.ignore}
         if not len(body): 
             return
         
         self.store[reply.sender] = {**old, **body} if (old:=self.store.get(reply.sender)) else body
         
-        print(self.store)
+        print(f"{reply.sender}: {body}")
+#        print(self.store)

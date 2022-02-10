@@ -9,6 +9,8 @@ lvm scraper
 Features
 --------
 - scraps data from the rabbitmq exchange
+- simple web interface
+- creates 8key fits cards from data
 
 Installation
 ------------

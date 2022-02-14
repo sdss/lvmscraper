@@ -45,7 +45,7 @@ Usage
 -----
 
 * Start some actors
-* The actor interface has two commands and one option --filter
+* The actor interface has two commands data & fits with an option --filter
 
 .. code-block:: console
 

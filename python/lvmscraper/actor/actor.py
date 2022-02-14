@@ -58,23 +58,23 @@ class ScraperActor(AMQPActor):
 
     async def start(self):
         await super().start()
-
       
         try:
             self.log.debug(f"Start scraper ...")
-            self.log.debug(f"{self.config}")
+#            self.log.debug(f"{self.config}")
 
-            ### fixme
-            scraper = await AMQPClientScraper(self.datastore, 'lvm.scrap', host='localhost').start()
+#            self.log.info(f"{self.config.get('actor')}")
+            scraper = await AMQPClientScraper(self.datastore, **self.config.get('actor')).start()
 
-            webserver = threading.Thread(target=cherrypy.quickstart, args=[WebServer(self.datastore)])
+#            self.log.debug(f"{self.config.get('webserver')}")
+            webserver = threading.Thread(target=cherrypy.quickstart, args=[WebServer(self.datastore), '/', self.config.get('webserver')])
             webserver.start()
 
 
         except Exception as ex:
             self.log.error(f"Unexpected exception {type(ex)}: {ex}")
 
-        self.log.debug("Start done")
+#        self.log.debug("Start done")
 
     async def stop(self):
         return await super().stop()
@@ -89,7 +89,7 @@ class ScraperActor(AMQPActor):
             instance.log.fh.setLevel(0)
             instance.log.sh.setLevel(0)
 
-        instance.log.debug("Hello world")
+        #instance.log.debug("Hello world")
 
         assert isinstance(instance, ScraperActor)
         assert isinstance(instance.config, dict)

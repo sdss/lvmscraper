@@ -2,7 +2,7 @@
 
 
 # predefined keys 
-# $NAME is the system
+# $NAME is the actors systemname 
 
 # tcs pwi cards         
 'ra_j2000_hours':           [RA,  "[HOURS] ra j2000 $NAME"] 

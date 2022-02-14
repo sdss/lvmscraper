@@ -9,6 +9,8 @@ lvm scraper
 Features
 --------
 - scraps data from the rabbitmq exchange
+- simple web interface
+- creates 8key fits cards from data
 
 Installation
 ------------
@@ -33,6 +35,43 @@ Quickstart
 .. code-block:: console
 
     poetry run lvmscraper -vvv  start --debug
+    
+Todo
+----
+
+* configuration not implemented
+
+Usage
+-----
+
+* Start some actors
+* The actor interface has two commands data & fits with an option --filter
+
+.. code-block:: console
+
+    lvm.scraper data --filter lvm.*
+    #> clu
+    lvm.scraper data
+    10:03:03.729 lvm.scraper >
+    10:03:03.751 lvm.scraper : {
+       ...
+    }
+    lvm.scraper data --filter lvm.*.foc
+    10:03:20.792 lvm.scraper >
+    10:03:20.858 lvm.scraper : {
+       ...
+    }
+    lvm.scraper fits
+    10:03:27.498 lvm.scraper >
+    10:03:27.507 lvm.scraper : {
+       ...
+    }
+    lvm.scraper fits --filter *.foc
+    10:03:37.945 lvm.scraper >
+    10:03:37.957 lvm.scraper : {
+      ...
+    }
+* On port 8080 there is a webserver    
 
 
 

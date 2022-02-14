@@ -10,6 +10,6 @@
 
 # tcs tan cards         
 'DeviceEncoderPosition':    [POS, '[$Units] focus position $NAME'] # keys from the system can be referenced
-'Units': (),
+'Units': [],
 'Reachable':                [IS_ON, 'Electronic is on $NAME']
         

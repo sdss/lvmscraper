@@ -1,8 +1,8 @@
 # systems hierachical keys to fits cards
 
 
-# predefined keys
-$NAME is the system
+# predefined keys 
+# $NAME is the system
 
 # tcs pwi cards         
 'ra_j2000_hours':           [RA,  "[HOURS] ra j2000 $NAME"] 

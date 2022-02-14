@@ -34,7 +34,7 @@ Quickstart
 
 .. code-block:: console
 
-    poetry run lvmscraper -vvv  start --debug
+    poetry run lvmscraper start
     
 Todo
 ----
@@ -68,7 +68,7 @@ Usage
     10:03:37.957 lvm.scraper : {
       ...
     }
-* On port 8080 there is a webserver    
+* On port 8085 there is a webserver    
 
 
 

@@ -1,4 +1,11 @@
 # Actor configuration for the AMQPActor class
+
+
+websrv:
+    host: localhost
+    port: 8088
+
+
 actor:
     name: lvm.scraper
     host: localhost

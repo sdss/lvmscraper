@@ -62,6 +62,7 @@ class ScraperActor(AMQPActor):
       
         try:
             self.log.debug(f"Start scraper ...")
+            self.log.debug(f"{self.config}")
 
             ### fixme
             scraper = await AMQPClientScraper(self.datastore, 'lvm.scrap', host='localhost').start()

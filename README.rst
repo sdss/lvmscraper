@@ -49,7 +49,6 @@ Usage
 
 .. code-block:: console
 
-    lvm.scraper data --filter lvm.*
     #> clu
     lvm.scraper data
     10:03:03.729 lvm.scraper >

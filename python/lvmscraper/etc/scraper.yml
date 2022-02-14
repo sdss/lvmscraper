@@ -3,6 +3,11 @@
 
 webserver: !include scraper_webserver.yml
     
+datastore:
+   sys2fits: !include scraper_sys2fits.yml
+   key2fits: !include scraper_key2fits.yml
+
+
 actor:
     name: lvm.scraper
     host: localhost

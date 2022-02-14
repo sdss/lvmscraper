@@ -1,0 +1,20 @@
+# system to 3 letter maps
+
+
+# tcs        
+'lvm.sci.pwi': 'TIS'
+'lvm.skye.pwi': 'TES' 
+'lvm.skyw.pwi': 'TWS' 
+'lvm.spec.pwi': 'TSS'
+'lvm.sci.foc': 'TIF' 
+'lvm.skye.foc': 'TEF' 
+'lvm.skyw.foc': 'TWF' 
+'lvm.spec.foc': 'TSF'
+'lvm.sci.km': 'TIK'
+'lvm.skye.km': 'TEK' 
+'lvm.skyw.km': 'TWK' 
+'lvm.spec.fibsel': 'TSF'
+
+# scs        
+
+# ecs        

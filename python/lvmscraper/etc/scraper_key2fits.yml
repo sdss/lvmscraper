@@ -1,0 +1,12 @@
+# systems hierachical keys to fits cards
+
+
+# tcs pwi cards         
+'ra_j2000_hours':           [RA,  "[HOURS] ra j2000 $NAME"]
+'dec_j2000_degs':           [DEG, "[DEG] dec j2000 $NAME"]
+
+# tcs tan cards         
+'DeviceEncoderPosition':    [POS, '[$Units] focus position $NAME']
+'Units': (),
+'Reachable':                [IS_ON, 'Electronic is on $NAME']
+        

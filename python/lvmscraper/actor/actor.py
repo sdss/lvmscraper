@@ -53,7 +53,7 @@ class ScraperActor(AMQPActor):
 
         self.load_schema(self.schema, is_file=False)
 
-        self.datastore = DataStore()
+        self.datastore = DataStore(self.config.get("datastore", {}), log=self.log)
 
 
     async def start(self):

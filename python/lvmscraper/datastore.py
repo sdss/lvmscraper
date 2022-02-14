@@ -17,34 +17,17 @@ import pandas as pd
 
 
 class DataStore(object):
-    def __init__(self):
-        ### fix me
-        self.sys_to_fits_keymap = {
-        'lvm.sci.pwi': 'TIS', 
-        'lvm.skye.pwi': 'TES', 
-        'lvm.skyw.pwi': 'TWS', 
-        'lvm.spec.pwi': 'TSS',
-        'lvm.sci.foc': 'TIF', 
-        'lvm.skye.foc': 'TEF', 
-        'lvm.skyw.foc': 'TWF', 
-        'lvm.spec.foc': 'TSF',
-        'lvm.sci.km': 'TIK',
-        'lvm.skye.km': 'TEK', 
-        'lvm.skyw.km': 'TWK', 
-        'lvm.spec.fibsel': 'TSF',
-        }
+    def __init__(self, config, log):
+        self.log=log
+        self.log.debug(f"{config}")
         
-        self.sys_param_to_fits_keymap = {
-            'ra_j2000_hours':        ('RA',  "[HOURS] ra j2000 $NAME"),
-            'dec_j2000_degs':         ('DEG', "[DEG] dec j2000 $NAME"),
-            'DeviceEncoderPosition': ('POS', '[$Units] focus position $NAME'),
-            'Units': (),
-        }
-        
+        self.sys2fits = config.get("sys2fits", {})
+        self.key2fits = config.get("key2fits", {})
         self.store = {}
+
         
     def createSysFitsKey(self, name: str):
-        if (sk:=self.sys_to_fits_keymap.get(name)):
+        if (sk:=self.sys2fits.get(name)):
             return sk
         else:
             return "XXX"
@@ -55,7 +38,7 @@ class DataStore(object):
             return fitsSkey + base64.b64encode(hashlib.md5(f"{fitsSkey}.{key}".encode('utf8')).digest())[:5].decode()
         else:
             return base64.b64encode(hashlib.md5(f"{fitsSkey}.{key}".encode('utf8')).digest())[:8].decode()
-        return sys_to_fits_keymap.get(name)
+        return sys2fits.get(name)
 
 
     def data(self, filter):
@@ -69,7 +52,7 @@ class DataStore(object):
         for sk in fnmatch.filter(self.store, filter):
             sv = self.store[sk]
             for (pk,pv) in sv.items():
-                if (sp2f:=self.sys_param_to_fits_keymap.get(pk)) != None:
+                if (sp2f:=self.key2fits.get(pk)) != None:
                     if len(sp2f):
                         comment = string.Template(sp2f[1]).substitute(sv, NAME=sk)
                         key = self.createSysFitsKey(sk) + sp2f[0]

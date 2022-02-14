@@ -39,8 +39,6 @@ Quickstart
 Todo
 ----
 
-* configuration not implemented
-
 Usage
 -----
 

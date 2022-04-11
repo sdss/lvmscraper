@@ -14,6 +14,10 @@
 'lvm.skye.km': 'TEK' 
 'lvm.skyw.km': 'TWK' 
 'lvm.spec.fibsel': 'TSF'
+'lvm.sci.agcam': 'TIG'
+'lvm.skye.agcam': 'TEG' 
+'lvm.skyw.agcam': 'TWG' 
+'lvm.spec.agcam': 'TSG'
 
 # scs        
 

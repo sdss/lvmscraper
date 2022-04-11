@@ -9,7 +9,7 @@
 'dec_j2000_degs':           [DEG, "[DEG] dec j2000 $NAME"]
 
 # tcs tan cards         
-'DeviceEncoderPosition':    [POS, '[$Units] focus position $NAME'] # keys from the system can be referenced
-'Units': []
+'Position':                 [POS, '[DEG] focus position $NAME'] # keys from the system can be referenced
+'DeviceEncoder.Position':   [ENC, '[$DeviceEncoder.Units] focus position $NAME'] # keys from the system can be referenced
 'Reachable':                [IS_ON, 'Electronic is on $NAME']
         

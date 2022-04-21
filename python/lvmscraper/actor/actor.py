@@ -15,7 +15,7 @@ from clu.actor import AMQPActor
 from cluplus import __version__
 from cluplus.configloader import Loader
 
-from .commands import command_parser as scraper_command_parser
+from .commands import command_parser
 
 from lvmscraper.datastore import DataStore
 from lvmscraper.scraper import AMQPClientScraper
@@ -36,7 +36,7 @@ class ScraperActor(AMQPActor):
     """PWI actor.
     """
 
-    parser = scraper_command_parser
+    parser = command_parser
     
     def __init__(
             self,

@@ -6,7 +6,7 @@ from clu.tools import cli_coro
 
 from sdsstools.daemonizer import DaemonGroup
 
-from .actor.actor import ScraperActor
+from lvmscraper.actor.actor import ScraperActor
 
 
 @click.group(cls=DefaultGroup, default="actor", default_if_no_args=True)
@@ -39,8 +39,11 @@ async def actor(ctx):
     default_config_file = os.path.join(os.path.dirname(__file__), "etc/scraper.yml")
     config_file = ctx.obj["config_file"] or default_config_file
 
+    print(f"{config_file}")
     scraper_obj = ScraperActor.from_config(config_file, verbose=ctx.obj["verbose"])
 
     await scraper_obj.start()
     await scraper_obj.run_forever()
 
+if __name__ == "__main__":
+    scraper()

@@ -29,7 +29,10 @@ include = ["python/lvmscraper/etc/*"]
 
 [tool.poetry.scripts]
 lvmscraper = "lvmscraper.__main__:scraper"
-
+container_build ="container:build"
+container_start ="container:start"
+container_stop ="container:stop"
+container_isRunning ="container:isRunning"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4"

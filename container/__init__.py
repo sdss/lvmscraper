@@ -47,10 +47,7 @@ def start(lvmt_root:str, name: str, debug:bool, kill:bool, rmq:str):
 
     run_base = f"--rm -t --name={name}"
     
-    if rmq:
-        run_base += f" -e LVMT_RMQ={lvmt_rmq}"
-    else:
-        run_base += f" -e LVMT_RMQ={socket.gethostname()}"
+    run_base += f" -e LVMT_RMQ={rmq}"
 
     if debug:
         run_base +=  f" -e LVMT_DEBUG=true"

@@ -9,7 +9,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     env:
-      USER: wasndas
+      USER: sdss
       APP: lvmscraper
     steps:
       - name: Set docker tags

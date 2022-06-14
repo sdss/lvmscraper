@@ -55,8 +55,8 @@ def start(lvmt_root:str, name: str, debug:bool, kill:bool, rmq:str):
     if debug:
         run_base +=  f" -e LVMT_DEBUG=true"
 
-    run_cam = f"-v {lvmt_root}:/root/lvmscraper:rw"
-    run = f"{container_bin} run {run_base} {run_cam} {lvmt_image}"
+    run_scraper = f"-v {lvmt_root}:/root/lvmscraper:rw -p 8085:8085"
+    run = f"{container_bin} run {run_base} {run_scraper} {lvmt_image}"
     print(run)
     #child = pexpect.spawn(run)
     #child.expect('BSC loaded')

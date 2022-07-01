@@ -42,8 +42,8 @@ Todo
 Usage
 -----
 
-* Start some actors
-* The actor interface has two commands data & fits with an option --filter
+- Start some actors
+- The actor interface has two commands data & fits with an option --filter
 
 .. code-block:: console
 
@@ -68,7 +68,9 @@ Usage
     10:03:37.957 lvm.scraper : {
       ...
     }
-* On port 8085 there is a webserver    
+
+
+- On port 8085 there is a webserver    
 
 
 

@@ -28,15 +28,15 @@ def flatten_dict(d: MutableMapping, parent_key: str = '', sep: str = '.'):
 
 
 class AMQPClientScraper(AMQPClient):
-    def __init__(self, datastore, **kwargs):
+    def __init__(self, datastore, name:str="", **kwargs):
 
         self.store = datastore.store
         self.ignore = ["text", "help", "schema", "error", "error.exception_message", "error.exception_module", "error.exception_type", "cards", "scraper"]
         
+        self.actor_name = name
+        self.scraper_name = f"{self.actor_name}.listener"
         
-        name = f"{kwargs.get('name', 'scraper')}.listener"
-        
-        super().__init__(name, **{key: val for (key,val) in kwargs.items() if key != 'name'})
+        super().__init__(self.scraper_name, **{key: val for (key,val) in kwargs.items() if key != 'name'})
 
 
     async def handle_reply(self, message: apika.IncomingMessage) -> AMQPReply:
@@ -44,12 +44,9 @@ class AMQPClientScraper(AMQPClient):
         """
         reply = AMQPReply(message, log=self.log)
 
-#        print(f"{reply.headers} {reply.sender}")
+        # self.log.warning(f"{self.name} {reply.headers} {reply.sender} {reply.command_id}")
         
-        #if reply.sender == self.actorname:
-            #return
-        
-        if reply.command_id == "scraper":
+        if reply.sender == self.actor_name:
             return
         
         body = { key: value for (key,value) in flatten_dict(reply.body).items() if key not in self.ignore}

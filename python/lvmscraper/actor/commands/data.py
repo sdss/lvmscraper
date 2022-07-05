@@ -21,7 +21,7 @@ from lvmscraper.datastore import DataStore
 async def data(command: Command, ds: DataStore, filter: str):
     """return raw data filtered"""
 
-    command.command_id="scraper"
+    #command.command_id="scraper"
 
     return command.finish( **ds.data(filter) )
 
@@ -31,7 +31,7 @@ async def data(command: Command, ds: DataStore, filter: str):
 async def fits(command: Command, ds: DataStore, filter:str):
     """return fits data filtered"""
 
-    command.command_id="scraper"
+    #command.command_id="scraper"
 
     return command.finish( cards=ds.asFits(filter) )
 

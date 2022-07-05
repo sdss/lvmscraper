@@ -89,7 +89,7 @@ class ScraperActor(AMQPActor):
             instance.log.fh.setLevel(0)
             instance.log.sh.setLevel(0)
 
-        #instance.log.debug("Hello world")
+        # instance.log.debug(instance.name)
 
         assert isinstance(instance, ScraperActor)
         assert isinstance(instance.config, dict)

@@ -55,5 +55,5 @@ class AMQPClientScraper(AMQPClient):
         
         self.store[reply.sender] = {**old, **body} if (old:=self.store.get(reply.sender)) else body
         
-        print(f"{reply.sender}: {body}")
+#        print(f"{reply.sender}: {body}")
 #        print(self.store)

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "sdss-lvmscraper"
-version = "0.0.2"
+version = "0.0.3"
 description = "LVM Instrument data scraper"
 authors = ["Florian Briegel <briegel@mpia.de>"]
 license = "BSD-3-Clause"

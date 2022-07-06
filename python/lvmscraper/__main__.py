@@ -18,16 +18,24 @@ from lvmscraper.actor.actor import ScraperActor
     help="Path to the user configuration file.",
 )
 @click.option(
+    "-r",
+    "--rmqurl",
+    "rmq_url",
+    default=None,
+    type=str,
+    help="rabbitmq url, eg: amqp://guest:guest@localhost:5672/",
+)
+@click.option(
     "-v",
     "--verbose",
     count=True,
     help="Debug mode. Use additional v for more details.",
 )
 @click.pass_context
-def scraper(ctx, config_file, verbose):
+def scraper(ctx, config_file, rmq_url, verbose):
     """scraper controller"""
 
-    ctx.obj = {"verbose": verbose, "config_file": config_file}
+    ctx.obj = {"config_file": config_file, "rmq_url": rmq_url, "verbose": verbose }
 
 
 @scraper.group(cls=DaemonGroup, prog="scraper_actor", workdir=os.getcwd())
@@ -40,7 +48,7 @@ async def actor(ctx):
     config_file = ctx.obj["config_file"] or default_config_file
 
     print(f"{config_file}")
-    scraper_obj = ScraperActor.from_config(config_file, verbose=ctx.obj["verbose"])
+    scraper_obj = ScraperActor.from_config(config_file, url=ctx.obj["rmq_url"], verbose=ctx.obj["verbose"])
 
     await scraper_obj.start()
     await scraper_obj.run_forever()

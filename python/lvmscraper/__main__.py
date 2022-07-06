@@ -19,7 +19,7 @@ from lvmscraper.actor.actor import ScraperActor
 )
 @click.option(
     "-r",
-    "--rmqurl",
+    "--rmq_url",
     "rmq_url",
     default=None,
     type=str,
